@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_object_detection_tensorflow">
+    <uses-permission android:name="android.permission.CAMERA"/>
    <application
         android:label="flutter_object_detection_tensorflow"
         android:name="${applicationName}"

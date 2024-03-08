@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_object_detection_tensorflow/views/camera_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       home: MaterialApp(
         title: 'Flutter Demo Home Page',
         theme: ThemeData(primarySwatch: Colors.blue),
+        home: const CameraView(),
       ),
     );
   }
