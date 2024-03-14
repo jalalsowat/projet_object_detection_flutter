@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "C:/Users/jalal/Object_detection/flutter_object_detection_tensorflow/windows/flutter"
+    "cmake.sourceDirectory": "C:/Users/jalal/Object_detection/flutter_object_detection_tensorflow/windows/flutter",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0E350B",
+        "titleBar.activeBackground": "#144B0F",
+        "titleBar.activeForeground": "#F5FDF4"
+    }
 }

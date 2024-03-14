@@ -8,6 +8,7 @@ class Scancontroller extends GetxController {
   void onInit() {
     super.onInit();
     initCamera();
+    initTFLite();
   }
 
   @override
@@ -18,7 +19,7 @@ class Scancontroller extends GetxController {
 
   late CameraController cameraController;
   late List<CameraDescription> cameras;
-  late CameraImage cameraImage;
+  //late CameraImage cameraImage;
 
   var isCameraInitialized = false.obs;
   var cameraCount = 0;
@@ -28,18 +29,29 @@ class Scancontroller extends GetxController {
       cameras = await availableCameras();
       cameraController = CameraController(cameras[0], ResolutionPreset.max);
       await cameraController.initialize().then((value) {
-        cameraCount++;
-        if (cameraCount % 10 == 0) {
-          cameraCount = 0;
-          cameraController.startImageStream((image) => objectDector(image));
+        cameraController.startImageStream((image) {
+          cameraCount++;
+          if (cameraCount % 10 == 0) {
+            cameraCount = 0;
+            objectDector(image);
+          }
           update();
-        }
+        });
       });
       isCameraInitialized(true);
       update();
     } else {
       print("Permission denied");
     }
+  }
+
+  initTFLite() async {
+    await Tflite.loadModel(
+        model: "assets/model.tflite",
+        labels: "assets/labels.txt",
+        isAsset: true,
+        numThreads: 1,
+        useGpuDelegate: false);
   }
 
   objectDector(CameraImage image) async {
